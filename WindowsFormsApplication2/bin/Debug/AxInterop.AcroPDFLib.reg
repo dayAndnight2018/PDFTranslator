@@ -1,0 +1,29 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\AxAcroPDFLib.AxAcroPDF]
+@="AxAcroPDFLib.AxAcroPDF"
+
+[HKEY_CLASSES_ROOT\AxAcroPDFLib.AxAcroPDF\CLSID]
+@="{1FF5FB6D-D2A7-3EC7-8A2B-EB7A6DF34222}"
+
+[HKEY_CLASSES_ROOT\CLSID\{1FF5FB6D-D2A7-3EC7-8A2B-EB7A6DF34222}]
+@="AxAcroPDFLib.AxAcroPDF"
+
+[HKEY_CLASSES_ROOT\CLSID\{1FF5FB6D-D2A7-3EC7-8A2B-EB7A6DF34222}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="AxAcroPDFLib.AxAcroPDF"
+"Assembly"="AxInterop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///E:/vsProjects/WindowsFormsApplication2/WindowsFormsApplication2/bin/Debug/AxInterop.AcroPDFLib.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{1FF5FB6D-D2A7-3EC7-8A2B-EB7A6DF34222}\InprocServer32\1.0.0.0]
+"Class"="AxAcroPDFLib.AxAcroPDF"
+"Assembly"="AxInterop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///E:/vsProjects/WindowsFormsApplication2/WindowsFormsApplication2/bin/Debug/AxInterop.AcroPDFLib.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{1FF5FB6D-D2A7-3EC7-8A2B-EB7A6DF34222}\ProgId]
+@="AxAcroPDFLib.AxAcroPDF"
+
+[HKEY_CLASSES_ROOT\CLSID\{1FF5FB6D-D2A7-3EC7-8A2B-EB7A6DF34222}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
