@@ -18,7 +18,15 @@ namespace WindowsFormsApplication2
             Application.SetCompatibleTextRenderingDefault(false);
             if (args!=null && args.Length>0)
             {
-                Application.Run(new Form1(args[0]));
+                if (args[0].ToLower().EndsWith(".pdf"))
+                {
+                    Application.Run(new Form1(args[0],Type.PDF));
+                }
+                else if (args[0].ToLower().EndsWith(".epub"))
+                {
+                    Application.Run(new Form1(args[0],Type.EPUB));
+                }
+                
             }
             else
             {

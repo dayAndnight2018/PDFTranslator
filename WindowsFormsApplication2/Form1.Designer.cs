@@ -37,10 +37,11 @@
             this.closeTrans = new System.Windows.Forms.ToolStripMenuItem();
             this.content = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.axAcroPDF = new AxAcroPDFLib.AxAcroPDF();
             this.translation = new System.Windows.Forms.TextBox();
             this.word = new System.Windows.Forms.TextBox();
             this.hide_btn = new System.Windows.Forms.Button();
-            this.axAcroPDF = new AxAcroPDFLib.AxAcroPDF();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.toolStrip1.SuspendLayout();
             this.content.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -53,12 +54,13 @@
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.Silver;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
             this.toolStripSplitButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(752, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1003, 27);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -70,14 +72,14 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(59, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(71, 24);
             this.toolStripDropDownButton1.Text = "文件(&F)";
             // 
             // 打开OToolStripMenuItem
             // 
             this.打开OToolStripMenuItem.Name = "打开OToolStripMenuItem";
             this.打开OToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.打开OToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.打开OToolStripMenuItem.Text = "打开";
             this.打开OToolStripMenuItem.Click += new System.EventHandler(this.打开OToolStripMenuItem_Click);
             // 
@@ -90,20 +92,20 @@
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(89, 22);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(109, 24);
             this.toolStripSplitButton1.Text = "取词翻译(×)";
             // 
             // openTrans
             // 
             this.openTrans.Name = "openTrans";
-            this.openTrans.Size = new System.Drawing.Size(148, 22);
+            this.openTrans.Size = new System.Drawing.Size(174, 26);
             this.openTrans.Text = "开启取词翻译";
             this.openTrans.Click += new System.EventHandler(this.开启取词翻译ToolStripMenuItem_Click);
             // 
             // closeTrans
             // 
             this.closeTrans.Name = "closeTrans";
-            this.closeTrans.Size = new System.Drawing.Size(148, 22);
+            this.closeTrans.Size = new System.Drawing.Size(174, 26);
             this.closeTrans.Text = "关闭取词翻译";
             this.closeTrans.Click += new System.EventHandler(this.closeTrans_Click);
             // 
@@ -111,9 +113,10 @@
             // 
             this.content.Controls.Add(this.splitContainer1);
             this.content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.content.Location = new System.Drawing.Point(0, 25);
+            this.content.Location = new System.Drawing.Point(0, 27);
+            this.content.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.content.Name = "content";
-            this.content.Size = new System.Drawing.Size(752, 513);
+            this.content.Size = new System.Drawing.Size(1003, 645);
             this.content.TabIndex = 3;
             // 
             // splitContainer1
@@ -121,11 +124,13 @@
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.webBrowser);
             this.splitContainer1.Panel1.Controls.Add(this.axAcroPDF);
             this.splitContainer1.Panel1MinSize = 100;
             // 
@@ -135,19 +140,31 @@
             this.splitContainer1.Panel2.Controls.Add(this.word);
             this.splitContainer1.Panel2.Controls.Add(this.hide_btn);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(752, 513);
-            this.splitContainer1.SplitterDistance = 633;
-            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.Size = new System.Drawing.Size(1003, 645);
+            this.splitContainer1.SplitterDistance = 844;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // axAcroPDF
+            // 
+            this.axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axAcroPDF.Enabled = true;
+            this.axAcroPDF.Location = new System.Drawing.Point(0, 0);
+            this.axAcroPDF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.axAcroPDF.Name = "axAcroPDF";
+            this.axAcroPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF.OcxState")));
+            this.axAcroPDF.Size = new System.Drawing.Size(840, 641);
+            this.axAcroPDF.TabIndex = 0;
             // 
             // translation
             // 
             this.translation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.translation.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.translation.Location = new System.Drawing.Point(0, 155);
+            this.translation.Location = new System.Drawing.Point(0, 193);
+            this.translation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.translation.Multiline = true;
             this.translation.Name = "translation";
-            this.translation.Size = new System.Drawing.Size(113, 354);
+            this.translation.Size = new System.Drawing.Size(152, 448);
             this.translation.TabIndex = 4;
             // 
             // word
@@ -156,11 +173,12 @@
             this.word.Dock = System.Windows.Forms.DockStyle.Top;
             this.word.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.word.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.word.Location = new System.Drawing.Point(0, 23);
+            this.word.Location = new System.Drawing.Point(0, 29);
+            this.word.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.word.Multiline = true;
             this.word.Name = "word";
             this.word.ReadOnly = true;
-            this.word.Size = new System.Drawing.Size(113, 132);
+            this.word.Size = new System.Drawing.Size(152, 164);
             this.word.TabIndex = 3;
             // 
             // hide_btn
@@ -171,30 +189,30 @@
             this.hide_btn.Location = new System.Drawing.Point(0, 0);
             this.hide_btn.Margin = new System.Windows.Forms.Padding(0);
             this.hide_btn.Name = "hide_btn";
-            this.hide_btn.Size = new System.Drawing.Size(113, 23);
+            this.hide_btn.Size = new System.Drawing.Size(152, 29);
             this.hide_btn.TabIndex = 2;
             this.hide_btn.Text = "隐藏";
             this.hide_btn.UseVisualStyleBackColor = false;
             this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click_1);
             // 
-            // axAcroPDF
+            // webBrowser
             // 
-            this.axAcroPDF.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axAcroPDF.Enabled = true;
-            this.axAcroPDF.Location = new System.Drawing.Point(0, 0);
-            this.axAcroPDF.Name = "axAcroPDF";
-            this.axAcroPDF.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF.OcxState")));
-            this.axAcroPDF.Size = new System.Drawing.Size(629, 509);
-            this.axAcroPDF.TabIndex = 0;
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(840, 641);
+            this.webBrowser.TabIndex = 1;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 538);
+            this.ClientSize = new System.Drawing.Size(1003, 672);
             this.Controls.Add(this.content);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "PDF Reader";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -226,6 +244,7 @@
         private System.Windows.Forms.TextBox translation;
         private System.Windows.Forms.TextBox word;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF;
+        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
 

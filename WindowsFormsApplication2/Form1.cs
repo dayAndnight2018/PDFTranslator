@@ -13,9 +13,14 @@ using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
+using eBdb.EpubReader;
 
 namespace WindowsFormsApplication2
 {
+    public enum Type {
+        PDF = 0,
+        EPUB = 1
+    }
 
     public partial class Form1 : Form
     {
@@ -30,23 +35,41 @@ namespace WindowsFormsApplication2
         static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
 
         MouseHook mouseHook = new MouseHook();
+
         bool isDown = false;
         bool isMove = false;
+
+        Epub epub;      
+
         public Form1()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
         }
 
-        public Form1(String path)
+        public Form1(String path, Type type)
         {
             InitializeComponent();
-            if (!String.IsNullOrWhiteSpace(path))
+            if (type == Type.PDF)
             {
                 axAcroPDF.src = path;
                 this.WindowState = FormWindowState.Maximized;
                 this.Text = string.Format("PDF Reader({0})", Path.GetFileName(path));
+                this.webBrowser.Visible = false;
+                this.axAcroPDF.Visible = true;
             }
+            else if (type == Type.EPUB)
+            {
+                epub = new Epub(path);
+                this.WindowState = FormWindowState.Maximized;
+                this.Text = string.Format("PDF Reader({0})", Path.GetFileName(path));
+                string htmlText = epub.GetContentAsHtml();
+                webBrowser.DocumentText = htmlText;
+                webBrowser.Show();
+                this.webBrowser.Visible = true;
+                this.axAcroPDF.Visible = false;
+            }
+
         }
 
         private void hide_btn_Click_1(object sender, EventArgs e)
@@ -244,15 +267,35 @@ namespace WindowsFormsApplication2
 
 
         }
+
         private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = "C:\\";
-            ofd.Filter = "PDF文件|*.pdf";
+            ofd.Filter = "PDF文件|*.pdf|EPUB文件|*.epub";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                axAcroPDF.src = ofd.FileName;
-                this.Text = string.Format("PDF Reader({0})", Path.GetFileName(ofd.FileName));
+                if (ofd.FileName.ToLower().EndsWith(".pdf"))
+                {
+                    axAcroPDF.src = ofd.FileName;
+                    this.Text = string.Format("PDF Reader({0})", Path.GetFileName(ofd.FileName));
+                    this.webBrowser.Visible = false;
+                    this.axAcroPDF.Visible = true;
+                }
+                else if (ofd.FileName.ToLower().EndsWith(".epub"))
+                {
+                    epub = new Epub(ofd.FileName);
+                    this.Text = string.Format("PDF Reader({0})", Path.GetFileName(ofd.FileName));
+                    this.webBrowser.Visible = true;
+                    this.axAcroPDF.Visible = false;
+                    string htmlText = epub.GetContentAsHtml();
+                    webBrowser.DocumentText = htmlText;
+                    webBrowser.Show();
+                   
+                }
+
+
+                
             }
         }
 
