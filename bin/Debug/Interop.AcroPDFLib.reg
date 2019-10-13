@@ -1,0 +1,25 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\CLSID\{CA8A9780-280D-11CF-A24D-444553540000}\InprocServer32]
+"Class"="AcroPDFLib.AcroPDFClass"
+"Assembly"="Interop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///E:/vsProjects/WindowsFormsApplication2/WindowsFormsApplication2/bin/Debug/Interop.AcroPDFLib.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{CA8A9780-280D-11CF-A24D-444553540000}\InprocServer32\1.0.0.0]
+"Class"="AcroPDFLib.AcroPDFClass"
+"Assembly"="Interop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///E:/vsProjects/WindowsFormsApplication2/WindowsFormsApplication2/bin/Debug/Interop.AcroPDFLib.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{24DA047B-40C0-4018-841B-6B7409F730FC}\InprocServer32]
+"Class"="AcroPDFLib.AdobeSPOpenDocumentsShimClass"
+"Assembly"="Interop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///E:/vsProjects/WindowsFormsApplication2/WindowsFormsApplication2/bin/Debug/Interop.AcroPDFLib.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{24DA047B-40C0-4018-841B-6B7409F730FC}\InprocServer32\1.0.0.0]
+"Class"="AcroPDFLib.AdobeSPOpenDocumentsShimClass"
+"Assembly"="Interop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///E:/vsProjects/WindowsFormsApplication2/WindowsFormsApplication2/bin/Debug/Interop.AcroPDFLib.dll"

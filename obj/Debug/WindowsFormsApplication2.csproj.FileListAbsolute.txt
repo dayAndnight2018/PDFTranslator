@@ -1,0 +1,33 @@
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.ResolveComReference.cache
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\bin\Debug\PDF Reader.exe.config
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\bin\Debug\PDF Reader.exe
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\bin\Debug\PDF Reader.pdb
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Form1.resources
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\PDFReader.Properties.Resources.resources
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.CopyComplete
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\PDF Reader.exe
+C:\Users\Administrator\Desktop\PDFTranslator-master\WindowsFormsApplication2\obj\Debug\PDF Reader.pdb
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\bin\Debug\PDF Reader.exe.config
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\bin\Debug\PDF Reader.exe
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\bin\Debug\PDF Reader.pdb
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csprojAssemblyReference.cache
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.ResolveComReference.cache
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Form1.resources
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\PDFReader.Properties.Resources.resources
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.cache
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.CoreCompileInputs.cache
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.CopyComplete
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\PDF Reader.exe
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\obj\Debug\PDF Reader.pdb
+C:\Users\DELL-PC\Desktop\WindowsFormsApplication2\bin\Debug\HZH_Controls.dll
