@@ -17,7 +17,8 @@ using eBdb.EpubReader;
 
 namespace WindowsFormsApplication2
 {
-    public enum Type {
+    public enum Type
+    {
         PDF = 0,
         EPUB = 1
     }
@@ -39,88 +40,48 @@ namespace WindowsFormsApplication2
         bool isDown = false;
         bool isMove = false;
 
-        Epub epub;      
+        Epub epub;
+
+        private Point mPoint;
 
         public Form1()
         {
             InitializeComponent();
+            this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
             this.WindowState = FormWindowState.Maximized;
+            Activate();
+            content.Parent = panel1;
         }
 
         public Form1(String path, Type type)
         {
             InitializeComponent();
+            this.MaximizedBounds = Screen.PrimaryScreen.WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+            Activate();
             if (type == Type.PDF)
             {
-                axAcroPDF.src = path;
-                this.WindowState = FormWindowState.Maximized;
-                this.Text = string.Format("PDF Reader({0})", Path.GetFileName(path));
+                axAcroPDF.src = path;               
+                this.label2.Text = Path.GetFileName(path);
                 this.webBrowser.Visible = false;
                 this.axAcroPDF.Visible = true;
             }
             else if (type == Type.EPUB)
             {
                 epub = new Epub(path);
-                this.WindowState = FormWindowState.Maximized;
-                this.Text = string.Format("PDF Reader({0})", Path.GetFileName(path));
+                this.label2.Text = Path.GetFileName(path);
                 string htmlText = epub.GetContentAsHtml();
                 webBrowser.DocumentText = htmlText;
                 webBrowser.Show();
                 this.webBrowser.Visible = true;
                 this.axAcroPDF.Visible = false;
             }
-
+            content.Parent = panel1;
         }
 
-        private void hide_btn_Click_1(object sender, EventArgs e)
-        {
-            splitContainer1.Panel2Collapsed = true;
-        }
-
-        private void 开启取词翻译ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            toolStripSplitButton1.Text = "取词翻译(√)";
-            openTrans.Checked = true;
-            closeTrans.Checked = false;
-            mouseHook.MouseMove += new MouseEventHandler(mouseHook_MouseMove);
-            mouseHook.MouseDown += new MouseEventHandler(mouseHook_MouseDown);
-            mouseHook.MouseUp += new MouseEventHandler(mouseHook_MouseUp);
-            mouseHook.Start();
-        }
-
-        private void closeTrans_Click(object sender, EventArgs e)
-        {
-            toolStripSplitButton1.Text = "取词翻译(×)";
-            closeTrans.Checked = true;
-            openTrans.Checked = false;
-            mouseHook.MouseMove -= new MouseEventHandler(mouseHook_MouseMove);
-            mouseHook.MouseDown -= new MouseEventHandler(mouseHook_MouseDown);
-            mouseHook.MouseUp -= new MouseEventHandler(mouseHook_MouseUp);
-            mouseHook.Stop();
-        }
-
-
-        void mouseHook_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                //鼠标左键点下 则开始绘制
-                isDown = true;
-            }
-        }
-
-
-        void mouseHook_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isDown && openTrans.Checked)
-            {
-                isMove = true;
-            }
-        }
 
         void mouseHook_MouseUp(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 Thread t = new Thread(() =>
@@ -134,18 +95,15 @@ namespace WindowsFormsApplication2
                         {
                             if (iData.GetDataPresent(DataFormats.Text)) //检查是否存在文本
                             {
-                                for (int i = 0; i < 6; i++)
+                                Thread.Sleep(50);
+                                string res = (String)iData.GetData(DataFormats.Text);
+                                if (!string.IsNullOrWhiteSpace(res))
                                 {
-                                    Thread.Sleep(500);
-                                    string res = (String)iData.GetData(DataFormats.Text);
-                                    if (!string.IsNullOrWhiteSpace(res))
+                                    if (splitContainer1.Panel2Collapsed)
                                     {
-                                        if (splitContainer1.Panel2Collapsed)
-                                        {
-                                            splitContainer1.Panel2Collapsed = false;
-                                        }
-                                        word.Text = res;
+                                        splitContainer1.Panel2Collapsed = false;
                                     }
+                                    word.Text = res;
                                 }
                             }
                         }
@@ -159,7 +117,6 @@ namespace WindowsFormsApplication2
                 t.Start();
 
             }
-
         }
 
         void Translate(string input)
@@ -223,7 +180,7 @@ namespace WindowsFormsApplication2
         void Translate2(string input)
         {
             bool flag = input.Trim(' ').Contains(" ");
-            input = input.Replace("\r\n", " ").Replace("（", "(").Replace("）", ")").Replace(" [ ", "[").Replace(" ] ", "]");
+            input = input.Replace("\r\n", " ").Replace("（", "(").Replace("）", ")").Replace(" [ ", "[").Replace(" ] ", "]").Replace("'", " i").Replace("\"", "");
             input = Regex.Replace(input, @"\([^\(]*\)", "");
             input = Regex.Replace(input, @"\[[^\[]*\]", "");
             input = HttpUtility.HtmlEncode(input);
@@ -249,15 +206,15 @@ namespace WindowsFormsApplication2
                 {
                     var matches = Regex.Match(result, @"(?<=word_mean"":\[)[\s\S]*?(?=\])").ToString();
                     matches = UnicodeToGB(matches);
-                    var splitResult = matches.Split(new char[]{','});
+                    var splitResult = matches.Split(new char[] { ',' });
                     foreach (var item in splitResult)
                     {
                         translation.Text += item.Trim('"');
                         translation.Text += Environment.NewLine;
                     }
-                   
+
                 }
-               
+
 
             }
             catch (Exception ex)
@@ -265,10 +222,101 @@ namespace WindowsFormsApplication2
                 translation.Text = null;
             }
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            splitContainer1.Panel2Collapsed = true;
+        }
+
+        private void ucBtnExt1_BtnClick(object sender, EventArgs e)
+        {
+            mouseHook.MouseMove -= new MouseEventHandler(mouseHook_MouseMove);
+            mouseHook.MouseDown -= new MouseEventHandler(mouseHook_MouseDown);
+            mouseHook.MouseUp -= new MouseEventHandler(mouseHook_MouseUp);
+            mouseHook.Stop();
+            this.Close();
+        }
+
+        void mouseHook_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                //鼠标左键点下 则开始绘制
+                isDown = true;
+            }
+        }
+
+
+        void mouseHook_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDown && ucSwitch1.Checked)
+            {
+                isMove = true;
+            }
+        }
+
+        private void min_BtnClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void header_MouseDown(object sender, MouseEventArgs e)
+        {
+            mPoint = new Point(e.X, e.Y);
+        }
+
+        private void header_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Location = new Point(this.Location.X - mPoint.X + e.X, this.Location.Y - mPoint.Y + e.Y);
+            }
+        }
+
+        private void max_BtnClick(object sender, EventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.max.BtnText = "❐";
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+                CenterToScreen();
+                this.max.BtnText = "□";
+            }
 
         }
 
-        private void 打开OToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            String s;
+            s = e.Data.GetData(typeof(String)) as String;
+            if (!String.IsNullOrWhiteSpace(s))
+            {
+                if (s.ToLower().EndsWith(".pdf"))
+                {
+                    axAcroPDF.src = s;
+                    this.label2.Text = Path.GetFileName(s);
+                    this.webBrowser.Visible = false;
+                    this.axAcroPDF.Visible = true;
+                }
+                else if (s.ToLower().EndsWith(".epub"))
+                {
+                    epub = new Epub(s);
+                    this.label2.Text = Path.GetFileName(s);
+                    string htmlText = epub.GetContentAsHtml();
+                    webBrowser.DocumentText = htmlText;
+                    webBrowser.Show();
+                    this.webBrowser.Visible = true;
+                    this.axAcroPDF.Visible = false;
+                }
+            }
+        }
+
+        private void openFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = "C:\\";
@@ -278,33 +326,58 @@ namespace WindowsFormsApplication2
                 if (ofd.FileName.ToLower().EndsWith(".pdf"))
                 {
                     axAcroPDF.src = ofd.FileName;
-                    this.Text = string.Format("PDF Reader({0})", Path.GetFileName(ofd.FileName));
+                    this.label2.Text = Path.GetFileName(ofd.FileName);
                     this.webBrowser.Visible = false;
                     this.axAcroPDF.Visible = true;
                 }
                 else if (ofd.FileName.ToLower().EndsWith(".epub"))
                 {
                     epub = new Epub(ofd.FileName);
-                    this.Text = string.Format("PDF Reader({0})", Path.GetFileName(ofd.FileName));
+                    this.label2.Text = Path.GetFileName(ofd.FileName);
                     this.webBrowser.Visible = true;
                     this.axAcroPDF.Visible = false;
                     string htmlText = epub.GetContentAsHtml();
                     webBrowser.DocumentText = htmlText;
                     webBrowser.Show();
-                   
+
                 }
-
-
-                
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ucSwitch1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (ucSwitch1.Checked)
+            {
+                mouseHook.MouseMove += new MouseEventHandler(mouseHook_MouseMove);
+                mouseHook.MouseDown += new MouseEventHandler(mouseHook_MouseDown);
+                mouseHook.MouseUp += new MouseEventHandler(mouseHook_MouseUp);
+                mouseHook.Start();
+            }
+            else
+            {
+                mouseHook.MouseMove -= new MouseEventHandler(mouseHook_MouseMove);
+                mouseHook.MouseDown -= new MouseEventHandler(mouseHook_MouseDown);
+                mouseHook.MouseUp -= new MouseEventHandler(mouseHook_MouseUp);
+                mouseHook.Stop();
+            }
+        }
+
+        private void hide_btn_Click(object sender, EventArgs e)
         {
             splitContainer1.Panel2Collapsed = true;
         }
 
-
-
+        private void header_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState =FormWindowState.Normal;
+                CenterToScreen();
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
     }
 }
